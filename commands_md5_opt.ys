@@ -1,0 +1,11 @@
+read -vlog95 /Users/jaip/Desktop/MD5_circuit/md5Core.v
+splitnets
+hierarchy -top md5Core; flatten
+proc; opt -full; memory; opt -full; fsm; opt -full 
+techmap; opt -full
+abc -g NOR
+splitnets -ports; opt -full
+opt_clean
+clean -purge
+flatten
+show -format pdf -prefix /Users/jaip/Desktop/MD5_circuit/md5_yosys_outputs/md5_opt
